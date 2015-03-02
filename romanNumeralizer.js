@@ -46,7 +46,15 @@ function testSubtractionArabicNumeral(){
     if(romanNumeralize(40) != "XL"){
         throw new Error ("Arabic 40 doesn't return Roman XL");
     }
-
+    if(romanNumeralize(90) != "XC"){
+        throw new Error ("Arabic 90 doesn't return Roman XC");
+    }
+    if(romanNumeralize(400) != "CD"){
+        throw new Error ("Arabic 400 doesn't return Roman CD");
+    }
+    if(romanNumeralize(900) != "CM"){
+        throw new Error ("Arabic 900 doesn't return Roman CM");
+    }
 }
 
 function romanNumeralize(arabicNumeral){
@@ -56,11 +64,20 @@ function romanNumeralize(arabicNumeral){
     else if(arabicNumeral >= 1000){
         return "M" + romanNumeralize(arabicNumeral-1000);
     }
+    else if(arabicNumeral >= 900){
+        return "CM" + romanNumeralize(arabicNumeral-900);
+    }
     else if(arabicNumeral >= 500){
         return "D" + romanNumeralize(arabicNumeral-500);
     }
+    else if(arabicNumeral >= 400){
+        return "CD" + romanNumeralize(arabicNumeral-400);
+    }
     else if(arabicNumeral >= 100){
         return "C" + romanNumeralize(arabicNumeral-100);
+    }
+    else if(arabicNumeral >= 90){
+        return "XC" + romanNumeralize(arabicNumeral-90);
     }
     else if(arabicNumeral >= 50){
         return "L" + romanNumeralize(arabicNumeral-50);
