@@ -22,6 +22,18 @@ function testSingleArabicNumerals(){
     if(romanNumeralize(10) != "X"){
         throw new Error ("Arabic 10 doesn't return Roman X");
     }
+    if(romanNumeralize(50) != "L"){
+        throw new Error ("Arabic 50 doesn't return Roman L");
+    }
+    if(romanNumeralize(100) != "C"){
+        throw new Error ("Arabic 100 doesn't return Roman C");
+    }
+    if(romanNumeralize(500) != "D"){
+        throw new Error ("Arabic 500 doesn't return Roman D");
+    }
+    if(romanNumeralize(1000) != "M"){
+        throw new Error ("Arabic 1000 doesn't return Roman M");
+    }
 }
 
 function testSubtractionArabicNumeral(){
@@ -36,6 +48,18 @@ function testSubtractionArabicNumeral(){
 function romanNumeralize(arabicNumeral){
     if(arabicNumeral == 0){
         return "";
+    }
+    else if(arabicNumeral >= 1000){
+        return "M" + romanNumeralize(arabicNumeral-1000);
+    }
+    else if(arabicNumeral >= 500){
+        return "D" + romanNumeralize(arabicNumeral-500);
+    }
+    else if(arabicNumeral >= 100){
+        return "C" + romanNumeralize(arabicNumeral-100);
+    }
+    else if(arabicNumeral >= 50){
+        return "L" + romanNumeralize(arabicNumeral-50);
     }
     else if(arabicNumeral >= 10){
         return "X" + romanNumeralize(arabicNumeral-10);
