@@ -2,9 +2,8 @@
 
 function runTests(){
     try{
-      testThatArabicNumeralOneIsRomanI();
-      testThatArabicNumeralThreeIsRomanIII();
-      testThatArabicNumeralSubtraction();
+      testSingleArabicNumerals();
+      testSubtractionArabicNumeral();
       console.log("All Tests Passed");
     }
     catch(e){ 
@@ -13,17 +12,19 @@ function runTests(){
     
 }
 
-function testThatArabicNumeralOneIsRomanI(){
+function testSingleArabicNumerals(){
     if(romanNumeralize(1) != "I"){
         throw new Error ("Arabic 1 doesn't return Roman I");
     }
-}
-function testThatArabicNumeralThreeIsRomanIII(){
-    if(romanNumeralize(3) != "III"){
-        throw new Error ("Arabic 3 doesn't return Roman III");
+    if(romanNumeralize(5) != "V"){
+        throw new Error ("Arabic 5 doesn't return Roman V");
+    }
+    if(romanNumeralize(10) != "X"){
+        throw new Error ("Arabic 10 doesn't return Roman X");
     }
 }
-function testThatArabicNumeralSubtraction(){
+
+function testSubtractionArabicNumeral(){
     if(romanNumeralize(4) != "IV"){
         throw new Error ("Arabic 4 doesn't return Roman IV");
     }
@@ -35,6 +36,9 @@ function testThatArabicNumeralSubtraction(){
 function romanNumeralize(arabicNumeral){
     if(arabicNumeral == 0){
         return "";
+    }
+    else if(arabicNumeral >= 10){
+        return "X" + romanNumeralize(arabicNumeral-10);
     }
     else if(arabicNumeral >= 9){
         return "IX" + romanNumeralize(arabicNumeral-9);
