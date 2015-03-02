@@ -43,6 +43,10 @@ function testSubtractionArabicNumeral(){
     if(romanNumeralize(9) != "IX"){
         throw new Error ("Arabic 9 doesn't return Roman IX");
     }
+    if(romanNumeralize(40) != "XL"){
+        throw new Error ("Arabic 40 doesn't return Roman XL");
+    }
+
 }
 
 function romanNumeralize(arabicNumeral){
@@ -60,6 +64,9 @@ function romanNumeralize(arabicNumeral){
     }
     else if(arabicNumeral >= 50){
         return "L" + romanNumeralize(arabicNumeral-50);
+    }
+    else if(arabicNumeral >= 40){
+        return "XL" + romanNumeralize(arabicNumeral-40);
     }
     else if(arabicNumeral >= 10){
         return "X" + romanNumeralize(arabicNumeral-10);
