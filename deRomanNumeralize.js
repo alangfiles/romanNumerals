@@ -3,6 +3,7 @@
 function runTests(){
     try{
       testRomanNumeralToArabic();
+      testMultipleNumbers();
       console.log("All Tests Passed");
     }
     catch(e){ 
@@ -10,6 +11,16 @@ function runTests(){
     }
     
 }
+
+function testMultipleNumbers(){
+    if(deRomanNumeralize("DX") != 510){
+        throw new Error ("roman DX doesn't return Arabic 510");
+    }
+    if(deRomanNumeralize("MCLVI") != 1156){
+        throw new Error ("roman MCLVI doesn't return Arabic 1156");
+    }
+}
+
 
 function testRomanNumeralToArabic(){
     if(deRomanNumeralize("I") != 1){
@@ -36,25 +47,30 @@ function testRomanNumeralToArabic(){
 }
 
 function deRomanNumeralize(romanNumberString){
-    if(romanNumberString == "M"){
-        return 1000;
+
+    var checkString = romanNumberString.slice(0,1);
+    if(checkString == ""){
+        return 0;
     }
-    else if(romanNumberString == "D"){
-        return 500;
+    else if(checkString == "M"){
+        return 1000 + deRomanNumeralize(romanNumberString.slice(1));
     }
-    else if(romanNumberString == "C"){
-        return 100;
+    else if(checkString == "D"){
+        return 500  + deRomanNumeralize(romanNumberString.slice(1));
     }
-    else if(romanNumberString == "L"){
-        return 50;
+    else if(checkString == "C"){
+        return 100 + deRomanNumeralize(romanNumberString.slice(1));
     }
-    else if(romanNumberString == "X"){
-        return 10;
+    else if(checkString == "L"){
+        return 50 + deRomanNumeralize(romanNumberString.slice(1));
     }
-    else if(romanNumberString == "V"){
-        return 5;
+    else if(checkString == "X"){
+        return 10 + deRomanNumeralize(romanNumberString.slice(1));
     }
-    else if(romanNumberString == "I"){
-        return 1;
+    else if(checkString == "V"){
+        return 5 + deRomanNumeralize(romanNumberString.slice(1));
+    }
+    else if(checkString == "I"){
+        return 1 + deRomanNumeralize(romanNumberString.slice(1));
     }
 }
