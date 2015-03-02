@@ -5,6 +5,7 @@ function runTests(){
       testSingleArabicNumerals();
       testSubtractionArabicNumeral();
       testBadInput();
+      testMultipleNumers();
       console.log("All Tests Passed");
     }
     catch(e){ 
@@ -12,9 +13,16 @@ function runTests(){
     }
     
 }
+
 function testBadInput(){
     if(romanNumeralize(-1) != "Error: Bad Input"){
         throw new Error ("Roman Numeralizer Doesn't handle bad input");
+    }
+}
+
+function testMultipleNumers(){
+    if(romanNumeralize(499) != "CDXCIX"){
+        throw new Error ("Arabic 499 doesn't return roman CDXCIX");
     }
 }
 
