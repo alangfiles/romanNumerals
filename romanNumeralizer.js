@@ -4,12 +4,18 @@ function runTests(){
     try{
       testSingleArabicNumerals();
       testSubtractionArabicNumeral();
+      testBadInput();
       console.log("All Tests Passed");
     }
     catch(e){ 
       console.log(e);
     }
     
+}
+function testBadInput(){
+    if(romanNumeralize(-1) != "Error: Bad Input"){
+        throw new Error ("Roman Numeralizer Doesn't handle bad input");
+    }
 }
 
 function testSingleArabicNumerals(){
@@ -99,5 +105,9 @@ function romanNumeralize(arabicNumeral){
     }
     else if(arabicNumeral >= 1){
         return "I" + romanNumeralize(arabicNumeral-1);
+    }
+    else{
+    //if it didn't fit into the above cases, it must be bad input
+        return "Error: Bad Input";
     }
 }
