@@ -18,11 +18,18 @@ function testBadInput(){
     if(romanNumeralize(-1) != "Error: Bad Input"){
         throw new Error ("Roman Numeralizer Doesn't handle bad input");
     }
+    if(romanNumeralize(3001) != "Error: input must be between 0 - 3000"){
+        throw new Error ("Roman Numeralizer Doesn't handle bad input");
+    }
+
 }
 
 function testMultipleNumers(){
     if(romanNumeralize(499) != "CDXCIX"){
         throw new Error ("Arabic 499 doesn't return roman CDXCIX");
+    }
+    if(romanNumeralize(1956) != "MCMLVI"){
+        throw new Error ("Arabic 1956 doesn't return roman MCMLVI");
     }
 }
 
@@ -74,6 +81,9 @@ function testSubtractionArabicNumeral(){
 function romanNumeralize(arabicNumeral){
     if(arabicNumeral == 0){
         return "";
+    }
+    else if(arabicNumeral > 3000){
+        return "Error: input must be between 0 - 3000";
     }
     else if(arabicNumeral >= 1000){
         return "M" + romanNumeralize(arabicNumeral-1000);
