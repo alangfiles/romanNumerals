@@ -4,6 +4,7 @@ function runTests(){
     try{
       testRomanNumeralToArabic();
       testMultipleNumbers();
+      testSubtractionNumerals();
       console.log("All Tests Passed");
     }
     catch(e){ 
@@ -18,6 +19,27 @@ function testMultipleNumbers(){
     }
     if(deRomanNumeralize("MCLVI") != 1156){
         throw new Error ("roman MCLVI doesn't return Arabic 1156");
+    }
+}
+
+function testSubtractionNumerals(){
+    if(deRomanNumeralize("IV") != 4){
+        throw new Error ("Roman IV doesn't return Arabic 4 ");
+    }
+    if(deRomanNumeralize("IX") != 9){
+        throw new Error ("Roman IX doesn't return Arabic 9");
+    }
+    if(deRomanNumeralize("XL") != 40){
+        throw new Error ("Roman XL doesn't return Arabic 40");
+    }
+    if(deRomanNumeralize("XC") != 90){
+        throw new Error ("Roman XC doesn't return Arabic 90");
+    }
+    if(deRomanNumeralize("CD") != 400){
+        throw new Error ("Roman CD doesn't return Arabic 400");
+    }
+    if(deRomanNumeralize("CM") != 900){
+        throw new Error ("Roman CM doesn't return Arabic 900");
     }
 }
 
@@ -47,12 +69,41 @@ function testRomanNumeralToArabic(){
 }
 
 function deRomanNumeralize(romanNumberString){
+    var checkString = "";
 
-    var checkString = romanNumberString.slice(0,1);
-    if(checkString == ""){
+    if(romanNumberString == ""){
         return 0;
     }
-    else if(checkString == "M"){
+    
+    if(romanNumberString.length >= 2){
+        //check if the 2 characters fit one of the subtraction numerals
+        checkString = romanNumberString.slice(0,2);
+
+        if(checkString == "CM"){
+            return 900 + deRomanNumeralize(romanNumberString.slice(2));
+        }
+        else if(checkString == "CD"){
+            return 400 + deRomanNumeralize(romanNumberString.slice(2));
+        }
+        else if(checkString == "XC"){
+            return 90 + deRomanNumeralize(romanNumberString.slice(2));
+        }
+        else if(checkString == "XL"){
+            return 40 + deRomanNumeralize(romanNumberString.slice(2));
+        }
+        else if(checkString == "IX"){
+            return 9 + deRomanNumeralize(romanNumberString.slice(2));
+        }
+        else if(checkString == "IV"){
+            return 4 + deRomanNumeralize(romanNumberString.slice(2));
+        }
+
+    }
+
+    //otherwise, just use the single number
+    checkString = romanNumberString.slice(0,1);
+    
+    if(checkString == "M"){
         return 1000 + deRomanNumeralize(romanNumberString.slice(1));
     }
     else if(checkString == "D"){
