@@ -20,6 +20,12 @@ function testMultipleNumbers(){
     if(deRomanNumeralize("MCLVI") != 1156){
         throw new Error ("roman MCLVI doesn't return Arabic 1156");
     }
+    if(deRomanNumeralize("CDXCIX") != 499){
+        throw new Error ("roman CDXCIX doesn't return Arabic 499");
+    }
+    if(deRomanNumeralize("MCMLVI") != 1956){
+        throw new Error ("roman MCMLVI doesn't return Arabic 1956");
+    }
 }
 
 function testSubtractionNumerals(){
